@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- <link rel="preload" href="../assets/images/pexels-pixabey-209831.jpg" as="image"> 
+  <link rel="preload" href="../assets/images/pexels-pixabey-531756.jpg" as="image"> -->
+  
+  <title>Current Weather</title>
+</head>
+<body>
+
+    <!-- Theme Flyout -->
+    <div class="theme-panel">
+    <div class="theme-body">
+        <span>Change Theme</span>
+        <div class="btn-group">
+        <button data-toggle="light" class="switcher-btn active">Light</button>
+        <button data-toggle="dark" class="switcher-btn">Dark</button>
+        </div>
+        <button class="theme-tab">
+        <i class="fas fa-chevron-left"></i>
+        </button>
+    </div>
+    </div>
+
+  <header class="main-header">
+    <h1>Current Weather</h1>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="locations-tab"><i class="fa-solid fa-location-dot"></i>Locations</button>
+      <button class="tab-button" data-tab="favorites-tab"><i class="fa-solid fa-heart"></i>Favorites</button>
+    </div>
+    <!-- Locations Tab Content -->
+    <div id="locations-tab" class="tab-content active">
+      <div id="locations-container">
+        <!-- Weather cards for all cities will go here -->
+      </div>
+      <p id="locations-total">Total Humidity: 0%</p>
+    </div>
+    
+    <!-- Favorites Tab Content -->
+    <div id="favorites-tab" class="tab-content">
+      <div id="favorites-container">
+        <!-- Favorite weather cards go here -->
+      </div>
+      <p id="favorites-total">Total Humidity: 0%</p>
+    </div>
+
+
+  <!-- Favorites Section
+  <section>
+    <div class="container"><h2>FAVORITES</h2>
+      <div class="favorites-button-container">
+        <button id="sort-favorites-asc">Sort A-Z</button>
+        <button id="sort-favorites-desc">Sort Z-A</button>
+      </div>
+      <div id="favoritesContainer">
+
+      </div>
+    </div>
+  </section> -->
+   
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

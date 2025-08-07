@@ -1,0 +1,151 @@
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.emoji-icon {
+    color: var(--emoji-color);
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-text);
+    background-color: var(--bg);
+    text-align: left;
+    transition: background-color 0.5s ease-in, color 0.5s ease-in, background-image 0.5s ease-in;
+}
+
+.main-header {
+  background-size: cover;   
+  background-position: center; 
+  background-repeat: no-repeat;
+  padding: 1rem;
+  text-align: center;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem auto;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-button {
+    background-color:white;
+    border-color: var(--button-border-color);
+    padding: 20px;
+    border-top-left-radius: 35%;
+    border-top-right-radius: 35%;
+}
+
+.tab-button.active {
+    background-color: var(--button-background);
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button i {
+    color: red;
+    margin-right: 0.5rem;
+}
+
+.locations-button-container,
+.favorites-button-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#sort-locations-asc, 
+#sort-locations-desc,
+#sort-favorites-asc,
+#sort-favorites-desc {
+    background-color: var(--button-background);
+    color: var(--color-text);
+    border-color: var(--button-border-color)
+}
+
+#locations-container,
+#favorites-container {
+    display: flex;
+    justify-content: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.favorite-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #ccc;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.favorite-icon:hover {
+    color: red;
+}
+
+.weather-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 600px;
+    min-width: 200px;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.weather-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    line-height: 1.5;
+    padding-top: 8px;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    font-size: 2.5rem;
+}
+.weather-main .description {
+    font-size:  1rem;
+    vertical-align: center;
+}
+
+.weather-details {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-top: 10px;
+}
