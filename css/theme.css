@@ -6,7 +6,6 @@
     --color-text: #161c2d;
     --color-text-base: #161c2d;
     --border: #383f53;
-    --emoji-color: #000;
     --theme-panel-color:#7393B3;
     --button-background: #cfdef3;
     --button-border-color: black;
@@ -20,10 +19,8 @@
     --color-text: #fff;
     --color-text-base: #161c2d;
     --border: #ced4da;
-    --emoji-color: #fff;
     --button-background: #747476;
     --button-border-color: white;
-   
 }
 
 [data-theme="light"] .main-header {

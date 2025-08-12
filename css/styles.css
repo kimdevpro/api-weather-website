@@ -62,19 +62,28 @@ body {
   margin-right: 0.5rem;
 }
 
-#sort-locations-asc,
-#sort-locations-desc,
-#sort-favorites-asc,
-#sort-favorites-desc {
+.sort-buttons {
+  display: flex;
+   justify-content: center;
+  gap: 2rem;
+  margin: 1rem auto;
+}
+
+.sort-button {
   background-color: var(--button-background);
   color: var(--color-text);
   border-color: var(--button-border-color);
+}
+
+.sort-button.active {
+  border-color: red;
 }
 
 #locations-container,
 #favorites-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   padding-left: 15px;
   padding-right: 15px;
   gap: 2rem;
@@ -85,14 +94,18 @@ body {
   position: absolute;
   top: 12px;
   right: 12px;
-  color: #ccc;
+  color: red;
   font-size: 1.2rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
+.favorite-icon {
+    transition: transform 0.2s ease;
+}
+
 .favorite-icon:hover {
-  color: red;
+    transform: translateY(-4px);
 }
 
 .weather-card {
