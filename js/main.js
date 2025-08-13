@@ -67,7 +67,7 @@ function renderLoadingCards(count = 6) {
 }
 
 async function loadAllCityWeather() {
-  renderLoadingCards(); 
+  renderLoadingCards();
   const weatherData = [];
 
   for (const city of cities) {
@@ -209,10 +209,12 @@ function updateAllStatsAndSorts() {
           : 'You have no favorites yet.  <br> Pick some from Locations tab.';
       totalEl.innerHTML = `<div class="totals-placeholder">${message}</div>`;
       return;
-}
+    }
 
     const total = calculateTotalTemperature(cards);
-    totalEl.innerHTML = `Total Temp: ${(total).toFixed(1)}° F, Avg: ${(total / cards.length).toFixed(1)}° F`;
+    totalEl.innerHTML = `Total Temp: ${total.toFixed(1)}° F, Avg: ${(
+      total / cards.length
+    ).toFixed(1)}° F`;
 
     const activeSortBtn = document.querySelector(
       `.sort-button.active[data-tab="${tab}-tab"]`

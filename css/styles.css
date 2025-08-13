@@ -1,5 +1,7 @@
 /* General Text Styling */
-body, .weather-card, .totals-placeholder {
+body,
+.weather-card,
+.totals-placeholder {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 400;
@@ -7,7 +9,8 @@ body, .weather-card, .totals-placeholder {
   line-height: 1;
   background-color: var(--bg);
   text-align: left;
-  transition: background-color 0.5s ease-in, color 0.5s ease-in, background-image 0.5s ease-in;
+  transition: background-color 0.5s ease-in, color 0.5s ease-in,
+    background-image 0.5s ease-in;
 }
 
 h1 {
@@ -25,14 +28,16 @@ h1 {
 }
 
 /* Tabs and Buttons */
-.tabs, .sort-buttons {
+.tabs,
+.sort-buttons {
   display: flex;
   justify-content: center;
   gap: 2rem;
   margin: 1rem auto;
 }
 
-.tab-button, .sort-button {
+.tab-button,
+.sort-button {
   background-color: var(--button-background);
   border-color: var(--button-border-color);
 }
@@ -103,7 +108,8 @@ h1 {
 }
 
 /* Weather Card */
-.weather-card, .totals-placeholder {
+.weather-card,
+.totals-placeholder {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -134,7 +140,7 @@ h1 {
 .temp-desc {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   gap: 4px;
   text-align: center;
 }
@@ -157,15 +163,15 @@ h1 {
 }
 
 .weather-footer {
-  display: flex;    
-  flex-direction: row;   
+  display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
 }
 
 .weather-footer > .left,
 .weather-footer > .right {
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   flex: 1;
   font-size: 1rem;
 }
