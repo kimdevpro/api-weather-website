@@ -1,96 +1,131 @@
-const cities = [
-  'New York',
-  'London',
-  'Tokyo',
-  'Sydney',
-  'Paris',
-  'Bangkok',
-  'Los Angeles',
-  'Chicago',
-  'Toronto',
-  'Vancouver',
-  'Mexico City',
-  'São Paulo',
-  'Buenos Aires',
-  'Cape Town',
-  'Cairo',
-  'Dubai',
-  'Mumbai',
-  'Delhi',
-  'Beijing',
-  'Shanghai',
-  'Seoul',
-  'Hong Kong',
-  'Singapore',
-  'Jakarta',
-  'Kuala Lumpur',
-  'Moscow',
-  'Istanbul',
-  'Rome',
-  'Barcelona',
-  'Berlin',
+// ===== Mock weather data =====
+const allMockWeather = [
+  {
+    location: {
+      name: 'New York',
+      country: 'United States',
+      timezone_id: 'America/New_York',
+    },
+    current: {
+      observation_time: '10:00 AM',
+      weather_descriptions: ['Partly cloudy'],
+      temperature: 22,
+      humidity: 60,
+      wind_speed: 14,
+      feelslike: 21,
+      astro: {
+        sunrise: '6:02 AM',
+        sunset: '8:10 PM',
+      },
+    },
+  },
+  {
+    location: {
+      name: 'London',
+      country: 'United Kingdom',
+      timezone_id: 'Europe/London',
+    },
+    current: {
+      observation_time: '3:00 PM',
+      weather_descriptions: ['Light rain'],
+      temperature: 18,
+      humidity: 72,
+      wind_speed: 9,
+      feelslike: 17,
+      astro: {
+        sunrise: '5:21 AM',
+        sunset: '9:02 PM',
+      },
+    },
+  },
+  {
+    location: {
+      name: 'Tokyo',
+      country: 'Japan',
+      timezone_id: 'Asia/Tokyo',
+    },
+    current: {
+      observation_time: '11:00 PM',
+      weather_descriptions: ['Clear'],
+      temperature: 26,
+      humidity: 55,
+      wind_speed: 7,
+      feelslike: 27,
+      astro: {
+        sunrise: '4:45 AM',
+        sunset: '6:58 PM',
+      },
+    },
+  },
+  {
+    location: {
+      name: 'Sydney',
+      country: 'Australia',
+      timezone_id: 'Australia/Sydney',
+    },
+    current: {
+      observation_time: '12:00 AM',
+      weather_descriptions: ['Cloudy'],
+      temperature: 15,
+      humidity: 80,
+      wind_speed: 12,
+      feelslike: 14,
+      astro: {
+        sunrise: '6:45 AM',
+        sunset: '5:12 PM',
+      },
+    },
+  },
+  {
+    location: {
+      name: 'Paris',
+      country: 'France',
+      timezone_id: 'Europe/Paris',
+    },
+    current: {
+      observation_time: '4:00 PM',
+      weather_descriptions: ['Sunny'],
+      temperature: 25,
+      humidity: 50,
+      wind_speed: 10,
+      feelslike: 25,
+      astro: {
+        sunrise: '6:18 AM',
+        sunset: '9:25 PM',
+      },
+    },
+  },
+  {
+    location: {
+      name: 'Bangkok',
+      country: 'Thailand',
+      timezone_id: 'Asia/Bangkok',
+    },
+    current: {
+      observation_time: '10:00 PM',
+      weather_descriptions: ['Humid and partly cloudy'],
+      temperature: 30,
+      humidity: 78,
+      wind_speed: 8,
+      feelslike: 36,
+      astro: {
+        sunrise: '6:05 AM',
+        sunset: '6:47 PM',
+      },
+    },
+  },
 ];
 
-const apiKey = 'a5e61be07633478e9b703149251308';
+// ===== Boot app =====
+initializeApp(allMockWeather);
 
 // ===== Core =====
-function initialize(weatherData) {
+function initializeApp(weatherData) {
   renderAllCards(weatherData);
   updateAllStatsAndSorts();
   setupSortButtonListeners();
   setupTabs();
 }
-
-function renderLoadingCards(count = 6) {
-  clearWeatherContainers();
-  const container = document.getElementById('locations-container');
-
-  for (let i = 0; i < count; i++) {
-    const card = document.createElement('div');
-    card.className = 'weather-card loading';
-    card.innerHTML = `
-      <div class="weather-header">
-        <div class="location">Loading...</div>
-        <div class="time">--</div>
-      </div>
-      <div class="temp-desc">
-        <div class="temperature"><span class="value">--</span></div>
-        <div class="description">Fetching weather...</div>
-      </div>
-      <div class="weather-footer">
-        <div class="left"><div>Humidity: --%</div><div>Wind: -- mph</div></div>
-        <div class="right"><div>Feels Like: --° F</div><div>Heat Index: --° F</div></div>
-      </div>
-    `;
-    container.appendChild(card);
-  }
-}
-
-async function loadAllCityWeather() {
-  renderLoadingCards(); 
-  const weatherData = [];
-
-  for (const city of cities) {
-    try {
-      const data = await getOneCityWeather(city);
-      weatherData.push(data);
-    } catch (err) {
-      console.error(`Error loading weather for ${city}:`, err);
-    }
-  }
-  initialize(weatherData);
-}
-
-async function getOneCityWeather(city) {
-  const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(
-    city
-  )}&aqi=no`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`WeatherAPI failed for ${city}: ${res.status}`);
-  return res.json(); // return the full JSON
-}
-
-loadAllCityWeather();
 
 function setupTabs() {
   const buttons = document.querySelectorAll('.tab-button');
@@ -129,19 +164,17 @@ function renderAllCards(dataArray) {
 }
 
 function formatWeatherData(data) {
-  const loc = data?.location || {};
-  const cur = data?.current || {};
-
   return {
-    location: `${loc.name}, ${loc.country}`,
-    time: loc.localtime,
-    description: cur.condition?.text,
-    temperature: cur.temp_f,
-    humidity: cur.humidity,
-    windSpeed: cur.wind_mph,
-    feelsLike: cur.feelslike_f,
-    heatIndex: cur.heatindex_f,
-    timeZone: getTimezoneAbbreviation(loc.tz_id),
+    location: `${data.location.name}, ${data.location.country}`,
+    time: data.current.observation_time,
+    description: data.current.weather_descriptions[0],
+    temperature: data.current.temperature,
+    humidity: data.current.humidity,
+    windSpeed: data.current.wind_speed,
+    feelsLike: data.current.feelslike,
+    sunrise: data.current.astro.sunrise,
+    sunset: data.current.astro.sunset,
+    timeZone: getTimezoneAbbreviation(data.location.timezone_id),
   };
 }
 
@@ -162,20 +195,22 @@ function createWeatherCard(data, isFavorite = false) {
     </div>
     <div class="temp-desc">
       <div class="temperature">
-        <span class="value">${data.temperature}° F</span>
+        <span class="value">${data.temperature}</span>
+        <span class="unit">°</span>
       </div>
       <div class="description">${data.description}</div>
     </div>
     <div class="weather-footer">
-  <div class="left">
-    <div>Humidity: ${data.humidity}%</div>
-    <div>Wind: ${data.windSpeed} mph</div>
-  </div>
-  <div class="right">
-    <div>Feels Like: ${data.feelsLike}° F</div>
-    <div>Heat Index: ${data.heatIndex}° F</div>
-  </div>
-</div>
+      <div class="details">
+        <span>Humidity: ${data.humidity}%</span>
+        <span>Wind: ${data.windSpeed} km/h</span>
+        <span>Feels Like: ${data.feelsLike}&#8451;</span>
+      </div>
+      <div class="sun">
+        <span>Sunrise: ${data.sunrise}</span>
+        <span>Sunset: ${data.sunset}</span>
+      </div>
+    </div>
   `;
 
   const icon = card.querySelector('.favorite-icon');
@@ -203,16 +238,14 @@ function updateAllStatsAndSorts() {
 
     const cards = Array.from(container.querySelectorAll('.weather-card'));
     if (cards.length === 0) {
-      const message =
-        tab === 'locations'
-          ? 'No data to summarize yet. <br> Check your Favorites tab.'
-          : 'You have no favorites yet.  <br> Pick some from Locations tab.';
-      totalEl.innerHTML = `<div class="totals-placeholder">${message}</div>`;
+      totalEl.innerHTML = `<div class="totals-placeholder">No data to summarize yet.</div>`;
       return;
-}
+    }
 
     const total = calculateTotalTemperature(cards);
-    totalEl.innerHTML = `Total Temp: ${(total).toFixed(1)}° F, Avg: ${(total / cards.length).toFixed(1)}° F`;
+    totalEl.innerHTML = `Total Temp: ${total}&#8451;, Avg: ${(
+      total / cards.length
+    ).toFixed(1)}&#8451;`;
 
     const activeSortBtn = document.querySelector(
       `.sort-button.active[data-tab="${tab}-tab"]`
